@@ -185,7 +185,7 @@ grads = compute_gradients_safe(model, inputs)  # Uses nested GradientTape
 ## Key Takeaways
 
 1. **Always use `tf.GradientTape` for nested gradients**, not `tf.gradients()`
-2. **Avoid `@tf.function` on functions with complex gradient operations**
+2. **Don't use `tf.gradients()` inside `@tf.function`** - it breaks nested derivative computation. Use `tf.GradientTape` instead, which works correctly with `@tf.function`
 3. **Use `persistent=True`** when you need multiple gradient calls from the same tape
 4. **Always handle `None` gradients** with helper functions like `safe_grad()`
 5. **Put forward pass inside the innermost tape** for proper gradient tracing
