@@ -60,7 +60,7 @@ def compute_gradients_safe(model, inputs):
     
     # Second-order gradients using outer tape
     u_r_rr = safe_grad(tape2.gradient(u_r_r, r), r) if u_r_r is not None else tf.zeros_like(r)
-    u_r_zz = safe_grad(tape2.gradient(u_r_z, z), r) if u_r_z is not None else tf.zeros_like(r)
+    u_r_zz = safe_grad(tape2.gradient(u_r_z, z), z) if u_r_z is not None else tf.zeros_like(z)
     # ... other second derivatives
     
     del tape2
